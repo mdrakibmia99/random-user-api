@@ -7,7 +7,7 @@
 // external imports
 const express = require("express");
 const cors = require("cors");
-
+const userRouter = require("./routes/user.route");
 
 // internal imports
 const app = express();
@@ -16,7 +16,7 @@ const port = process.env.PORT || 5000;
 // connect with middleware
 app.use(cors());
 app.use(express.json());
-
+app.use(express.static("public"));
 
 app.use("/user", userRouter);
 
