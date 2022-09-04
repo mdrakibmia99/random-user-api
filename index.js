@@ -22,7 +22,7 @@ app.use("/user", userRouter);
 
 // enable requests
 app.get("/", (req, res) => {
-    res.status(200).sendFile(__dirname + "./public/index.html");
+    res.send('ACC Assignment-1');
 });
 
 app.listen(port, () => {
