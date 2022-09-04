@@ -17,6 +17,7 @@ router.get("/random", getARandomUser);
 router.get("/all", getAllUsers);
 router.post("/save", saveAUser);
 router.patch("/update/:id", updateAUser);
+router.patch("/bulk-update", bulkUpdateUser);
 
 
 module.exports = router;

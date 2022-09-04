@@ -77,3 +77,31 @@ module.exports.updateAUser = (req, res) => {
         }
     })
 }
+
+// Update multiple user data
+module.exports.bulkUpdateUser = (req, res) => {
+    const { id } = req.query;
+    const newData = req.body;
+    const ids = id.split("-");
+
+
+    const bufferedData = fs.readFileSync(__dirname + "/../public/user.json");
+    const parsedUserData = JSON.parse(bufferedData);
+    let oldData = parsedUserData.filter(user => !ids.includes(user.id.toString()));
+
+    // oldData.push(newData);
+    newData.forEach(data => oldData.push(data));
+
+    const stringifiedUserData = JSON.stringify(oldData);
+    fs.writeFile(__dirname + "/../public/user.json", stringifiedUserData, error => {
+        if (!error) {
+            res.status(200).json({
+                success: true,
+                message: "successfully updating bulk-user data",
+                data: oldData
+            });
+        } else {
+            console.log("Failed to delete user data");
+        }
+    })
+}
