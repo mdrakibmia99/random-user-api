@@ -18,6 +18,6 @@ router.get("/all", getAllUsers);
 router.post("/save", saveAUser);
 router.patch("/update/:id", updateAUser);
 router.patch("/bulk-update", bulkUpdateUser);
-
+router.delete("/delete/:id", deleteAUser);
 
 module.exports = router;
