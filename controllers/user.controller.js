@@ -45,3 +45,35 @@ module.exports.saveAUser = (req, res) => {
         }
     })
 }
+
+// Update an user data
+module.exports.updateAUser = (req, res) => {
+    const bufferedData = fs.readFileSync(__dirname + "/../public/user.json");
+    const parsedUserData = JSON.parse(bufferedData);
+    const { id } = req.params;
+    const body = req.body;
+    const targetData = parsedUserData.find(data => data.id === Number(id));
+    const updatedData = {
+        id: targetData.id,
+        gender: body.gender || targetData.gender,
+        name: body.name || targetData.name,
+        contact: body.contact || targetData.contact,
+        address: body.address || targetData.address,
+        photoURL: body.photoURL || targetData.photoURL,
+    };
+    const newUserData = parsedUserData.filter(data => data.id !== Number(id));
+    newUserData.push(updatedData);
+    const stringifiedUserData = JSON.stringify(newUserData);
+
+    fs.writeFile(__dirname + "/../public/user.json", stringifiedUserData, error => {
+        if (!error) {
+            res.status(202).json({
+                success: true,
+                message: "successfully updating user data",
+                data: updatedData
+            })
+        } else {
+            console.log("Failed to update user data");
+        }
+    })
+}
