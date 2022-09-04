@@ -14,6 +14,7 @@ const {
 const router = express.Router();
 
 router.get("/random", getARandomUser);
+router.get("/all", getAllUsers);
 
 
 module.exports = router;
