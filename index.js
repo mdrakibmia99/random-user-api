@@ -22,7 +22,7 @@ app.use("/user", userRouter);
 
 // enable requests
 app.get("/", (req, res) => {
-    res.status(200).sendFile(__dirname + "/index.html");
+    res.status(200).sendFile(__dirname + "./public/index.html");
 });
 
 app.listen(port, () => {
