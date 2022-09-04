@@ -24,3 +24,24 @@ module.exports.getAllUsers = (req, res) => {
         data: users
     });
 };
+
+// Insert a new user data
+module.exports.saveAUser = (req, res) => {
+    const bufferedData = fs.readFileSync(__dirname + "/../public/user.json");
+    const parsedUserData = JSON.parse(bufferedData);
+    const newUserData = req.body;
+
+    parsedUserData.push(newUserData);
+    const stringifiedUserData = JSON.stringify(parsedUserData);
+    fs.writeFile(__dirname + "/../public/user.json", stringifiedUserData, error => {
+        if (!error) {
+            res.status(201).json({
+                success: true,
+                message: "successfully inserting new user data",
+                data: newUserData
+            })
+        } else {
+            console.log("Failed to insert new user data");
+        }
+    })
+}

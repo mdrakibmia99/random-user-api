@@ -15,6 +15,8 @@ const router = express.Router();
 
 router.get("/random", getARandomUser);
 router.get("/all", getAllUsers);
+router.post("/save", saveAUser);
+router.patch("/update/:id", updateAUser);
 
 
 module.exports = router;
