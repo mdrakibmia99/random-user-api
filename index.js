@@ -16,7 +16,7 @@ const port = process.env.PORT || 5000;
 // connect with middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+// app.use(express.static("public"));
 
 app.use("/user", userRouter);
 
