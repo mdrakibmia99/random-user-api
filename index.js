@@ -22,7 +22,7 @@ app.use("/user", userRouter);
 
 // enable requests
 app.get("/", (req, res) => {
-    res.send('ACC Assignment-1');
+    res.send('ACC Assignment-1 -Md Rakib Mia');
 });
 
 app.listen(port, () => {
